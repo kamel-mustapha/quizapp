@@ -1,0 +1,28 @@
+<div class="flex flex-col justify-between h-full gap-10">
+  <div class="title">
+    Question {{ current_question }}
+    <span *ngIf="show_questions">/ {{ questions.length }}</span>
+  </div>
+  <div *ngIf="!show_questions">
+    <i class="fa-solid fa-circle-notch text-main fa-spin fa-xl"></i>
+  </div>
+  <form
+    *ngIf="show_questions"
+    (submit)="submit_question()"
+    #f="ngForm"
+    id="quiz-form"
+  >
+    <p>{{ questions[current_question - 1].question }}</p>
+    <label
+      *ngFor="let response of questions[current_question - 1].responses"
+      (click)="select_response(response.id)"
+      [ngClass]="{
+        'bg-main text-gray-200': responses_form[response.id]
+      }"
+    >
+      {{ response.response }}
+    </label>
+  </form>
+  <button *ngIf="last_question" type="submit" form="quiz-form">Submit</button>
+  <button *ngIf="!last_question" type="submit" form="quiz-form">Next</button>
+</div>

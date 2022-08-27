@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default = 'quizappsecretkey')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default = '1'))
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST', default='127.0.0.1')]
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST', default='localhost'), '127.0.0.1']
 
 
 # Application definition
@@ -26,9 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'api',
+    
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -40,6 +44,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
 
 TEMPLATES = [
     {

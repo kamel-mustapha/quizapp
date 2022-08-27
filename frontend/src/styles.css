@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  @apply cursor-default;
+}
+body {
+  background-color: #16161a;
+}
+
+button,
+button[type="submit"] {
+  @apply bg-main text-gray-200 px-10 py-3 mx-auto rounded-md font-semibold text-lg duration-500 active:bg-mainDarker;
+}
+
+button > span {
+  @apply hidden cursor-pointer;
+}
+
+button:hover > span {
+  @apply inline;
+}
+
+.title {
+  @apply font-bold text-4xl;
+}
+
+p,
+form {
+  @apply font-semibold text-gray-600 text-xl leading-10;
+}
+
+form label {
+  @apply block cursor-pointer bg-gray-200 my-4 py-2 px-4 rounded-lg duration-500 hover:bg-main hover:text-gray-200;
+}
+
+form label input {
+  @apply hidden;
+}
