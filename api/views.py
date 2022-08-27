@@ -6,12 +6,12 @@ from django.core import serializers
 def get_random_questions(*args, **kwargs):
     res = {'status' : 'error', 'message' : 'unknown error'}
     try:
-        questions = Question.objects.all().order_by('?')[:10]
+        questions = Question.objects.all()[:10]
         questions_list = []
         for question in questions:
             question_dict = {
                 'question' : question.question,
-                'responses': list(question.responses.all().order_by('?').values('id', 'response', 'correct'))
+                'responses': list(question.responses.all().values('id', 'response', 'correct'))
             }
             questions_list.append(question_dict)
         res['questions'] = questions_list
