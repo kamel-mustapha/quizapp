@@ -1,1 +1,1 @@
-web: gunicorn core.wsgi
+web: gunicorn core.wsgi --worker_class gthread --workers 2 --threads 2
